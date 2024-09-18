@@ -1,0 +1,36 @@
+GET HTTP://localhost:8080/recipes
+
+##GET HTTP://localhost:8080/ingredients
+
+##
+
+##POST HTTP://localhost:8080/ingredients/c02b0490-7507-11ef-8fd8-0242ac120002 HTTP/1.1
+# content-type: application/json
+
+# {
+#      "id": "50cfb46f-7518-11ef-b0ba-0242ac120002",
+#      "name": "Milk"
+# }
+
+DELETE HTTP://localhost:8080/recipes/288b6888-7cc5-43f2-b97e-958873ca2bf0
+content-type: application/json
+
+{
+    "id": "288b6888-7cc5-43f2-b97e-958873ca2bf0",
+    "caption": "Coffee",
+    "description": "Put all ingredients together and enjoy your coffee.",
+    "ingredients": [
+      {
+        "id": "73fe0cd9-7598-11ef-8b1c-0242ac120002",
+        "name": "Milk"
+      },
+      {
+        "id": "73fe441a-7598-11ef-8b1c-0242ac120002",
+        "name": "Sugar"
+      },
+      {
+        "id": "73fe2462-7598-11ef-8b1c-0242ac120002",
+        "name": "Coffee"
+      }
+    ]
+  }
