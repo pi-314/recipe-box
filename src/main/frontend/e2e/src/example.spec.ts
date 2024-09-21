@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
+test('has title set correctly', {
+  tag: '@example'
+}, async ({ page }) => {
   await page.goto('/');
 
-  // Expect h1 to contain a substring.
-  expect(await page.locator('h1').innerText()).toContain('Welcome');
+  // Expect the element marked with 'data-testid="pageTitle"' (s. app.component.html) to contain an expected string.
+  expect(await page.getByTestId('pageTitle').innerText()).toBe('Recipe Box');
 });
