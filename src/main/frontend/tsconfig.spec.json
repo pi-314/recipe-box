@@ -5,8 +5,9 @@
     "module": "commonjs",
     "target": "es2016",
     "types": ["jest", "node"],
-    "composite": true,
-    "declaration": true
+    // "composite": true,      //  ---
+    // "declaration": true,    //  s. https://github.com/nrwl/nx/issues/4508
+    // "declarationMap": true  //  ---
   },
   "files": ["src/test-setup.ts"],
   "include": [

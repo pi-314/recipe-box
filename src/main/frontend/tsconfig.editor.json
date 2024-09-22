@@ -2,8 +2,9 @@
   "extends": "./tsconfig.json",
   "include": ["src/**/*.ts"],
   "compilerOptions": {
-    "composite": true,
-    "declaration": true
+    // "composite": true,      //  ---
+    // "declaration": true,    //  s. https://github.com/nrwl/nx/issues/4508
+    // "declarationMap": true  //  ---
   },
   "exclude": ["jest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts"]
 }

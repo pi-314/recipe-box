@@ -11,6 +11,9 @@
   "files": [],
   "include": [],
   "references": [
+    // If VS Code complains about 'referenced project should set "composite": true',
+    // s. https://github.com/nrwl/nx/issues/4508
+    // The workaround is just Reload Window
     {
       "path": "./tsconfig.editor.json"
     },
