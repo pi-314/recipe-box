@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @RestController
-@CrossOrigin( origins = "http://localhost:8081")
+@CrossOrigin( origins = "http://localhost:4200")
 public class IngredientController {
 
     @Autowired
@@ -37,10 +37,17 @@ public class IngredientController {
         }
     }
 
+    @PostMapping("/ingredients")
+    public ResponseEntity<List<Ingredient>> saveAllIngredients(@RequestBody List<Ingredient> ingredients) {
+        try {
+            return new ResponseEntity<>(StreamSupport.stream(ingredientRepository.saveAll(ingredients).spliterator(), false).toList(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @PostMapping("/ingredients/{id}")
     public ResponseEntity<Ingredient> updateIngredient(@PathVariable UUID id, @RequestBody Ingredient ingredient) {
-
         try {
             return new ResponseEntity<>(ingredientRepository.save(ingredient), HttpStatus.OK);
         } catch (Exception e) {
@@ -51,7 +58,6 @@ public class IngredientController {
     
     @DeleteMapping("/ingredients/{id}")
     public ResponseEntity<Ingredient> removeIngredient(@PathVariable UUID id, @RequestBody Ingredient ingredient) {
-
         try {
             ingredientRepository.delete(ingredient);
             return new ResponseEntity<>(ingredient, HttpStatus.OK);

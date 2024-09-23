@@ -1,4 +1,34 @@
-GET HTTP://localhost:8080/recipes
+GET HTTP://localhost:8080/ingredients
+
+##POST  HTTP://localhost:8080/ingredients
+##content-type: application/json
+
+# [
+#       {
+#         "id": "73fe441a-7598-11ef-8b1c-0242ac120002",
+#         "name": "Sugar"
+#       },
+#       {
+#         "id": "73fe2462-7598-11ef-8b1c-0242ac120002",
+#         "name": "Coffee"
+#       },
+#       {
+#         "id": "73feab12-7598-11ef-8b1c-0242ac120002",
+#         "name": "Cinamon Powder"
+#       },
+#       {
+#         "id": "73fe0cd9-7598-11ef-8b1c-0242ac120002",
+#         "name": "Milk"
+#       }
+# ]
+
+DELETE HTTP://localhost:8080/ingredients/73fe65f9-7598-11ef-8b1c-0242ac120002
+Content-Type: application/json
+
+{
+    "id": "73fe65f9-7598-11ef-8b1c-0242ac120002",
+    "name": null
+  }
 
 ##GET HTTP://localhost:8080/ingredients
 
