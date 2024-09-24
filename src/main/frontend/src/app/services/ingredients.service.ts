@@ -59,7 +59,7 @@ export class IngredientsService {
       console.log(`-R-${JSON.stringify(this.#remoteData)}\n-L-${JSON.stringify(this.#localData)}`);
       // merge distinct
       const result: Ingredient[] = this.#localData
-      .reduce((acc: Ingredient[], item2: Ingredient) => {
+        .reduce((acc: Ingredient[], item2: Ingredient) => {
           if (!acc.some((item1: Ingredient) =>
               item1.id === item2.id && item1.name === item2.name)) {
               acc.push(item2);
@@ -76,7 +76,7 @@ export class IngredientsService {
       }
       
       // update remote copy
-      this.api_service.saveAll(result).subscribe((saved: Ingredient[]) => {
+      this.api_service.saveAllIngredients(result).subscribe((saved: Ingredient[]) => {
         console.log(`saveAll.subscribe returned data. Saved: ${JSON.stringify(saved)}`);
         this.#remoteData = saved;
         console.log('updated remote copy');

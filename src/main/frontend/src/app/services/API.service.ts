@@ -2,23 +2,24 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
 import { Ingredient } from '../datamodel/ingredient';
+import { Recipe } from '../datamodel/recipe';
 
 @Injectable({
     providedIn: 'root'
 })
 export class APIService {
-    private apiUrl = 'http://localhost:8080/ingredients';
+    readonly apiBaseUrl = 'http://localhost:8080'; // for now just expose the base URL, usefull for testing!
     private http: HttpClient = inject(HttpClient);
 
     getAllIngredients(): Observable<Ingredient[]> {
         console.log('getAll() called');
-        return this.http.get<Ingredient[]>(this.apiUrl).pipe(
+        return this.http.get<Ingredient[]>(`${this.apiBaseUrl}/ingredients`).pipe(
             catchError(this.handleError<Ingredient[]>('getAll()', []))
         );
     }
 
     saveIngredient(ingredient: Ingredient): Observable<Ingredient> {
-        const url = `${this.apiUrl}/${ingredient.id}`;
+        const url = `${this.apiBaseUrl}/ingredients/${ingredient.id}`;
 
         return this.http.post<Ingredient>(url, ingredient, {
             headers: new HttpHeaders({
@@ -29,20 +30,20 @@ export class APIService {
         );
     }
 
-    saveAll(ingredients: Ingredient[]): Observable<Ingredient[]> {
-        const url = `${this.apiUrl}`;
+    saveAllIngredients(ingredients: Ingredient[]): Observable<Ingredient[]> {
+        const url = `${this.apiBaseUrl}/ingredients`;
 
         return this.http.post<Ingredient[]>(url, ingredients, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })
         }).pipe(
-            catchError(this.handleError<Ingredient[]>('save(ingredients:  ${JSON.stringify(ingredients)})', []))
+            catchError(this.handleError<Ingredient[]>('saveAllIngredients(ingredients:  ${JSON.stringify(ingredients)})', []))
         );
     }
 
     delete(ingredient: Ingredient): Observable<void> {
-        const url = `${this.apiUrl}/${ingredient.id}`;
+        const url = `${this.apiBaseUrl}/ingredients/${ingredient.id}`;
 
         return this.http.delete<void>(url, {
             headers: new HttpHeaders({
@@ -54,6 +55,52 @@ export class APIService {
         );
     }
 
+// ====================================================================================================
+    getAllRecipes(): Observable<Recipe[]> {
+        console.log('getAllRecipes() called');
+        return this.http.get<Recipe[]>(`${this.apiBaseUrl}/recipes`).pipe(
+            catchError(this.handleError<Recipe[]>('getAllRecipes()', []))
+        );
+    }
+
+    saveRecipe(recipe: Recipe): Observable<Recipe> {
+        const url = `${this.apiBaseUrl}/recipes/${recipe.id}`;
+
+        return this.http.post<Recipe>(url, recipe, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        }).pipe(
+            catchError(this.handleError<Recipe>(`saveRecipe(recipe:  ${JSON.stringify(recipe)})`))
+        );
+    }
+
+    saveAllRecipes(recipes: Recipe[]): Observable<Recipe[]> {
+        const url = `${this.apiBaseUrl}/recipes`;
+
+        return this.http.post<Recipe[]>(url, recipes, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        }).pipe(
+            catchError(this.handleError<Recipe[]>('saveAllRecipes(recipes:  ${JSON.stringify(recipes)})', []))
+        );
+    }
+
+    deleteRecipe(recipe: Recipe): Observable<void> {
+        const url = `${this.apiBaseUrl}/recipes/${recipe.id}`;
+
+        return this.http.delete<void>(url, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            }),
+            body: recipe
+        }).pipe(
+            catchError(this.handleError<void>(`deleteRecipe(recipe:  ${JSON.stringify(recipe)})`))
+        );
+    }
+
+// ====================================================================================================
     private handleError<T>(operation = 'operation', result?: T) {
         const sourceClassName = this.constructor.toString().match(/\w+/g)?.[1] ?? 'UnknownClass';
         return (error: any): Observable<T> => {
