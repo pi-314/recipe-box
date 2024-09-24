@@ -80,6 +80,13 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<environmentVariables>
+						<MYSQL_HOST>localhost</MYSQL_HOST>
+						<MYSQL_PORT>3306</MYSQL_PORT>
+						<MYSQL_SCHEMA>recipebox</MYSQL_SCHEMA>
+						<MYSQL_USER>jpa</MYSQL_USER>
+						<MYSQL_PASSWORD>jpa</MYSQL_PASSWORD>
+					</environmentVariables>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
