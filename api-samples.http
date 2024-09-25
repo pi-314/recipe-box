@@ -1,46 +1,64 @@
+# Get all ingredients
+
 GET HTTP://localhost:8080/ingredients
 
-##POST  HTTP://localhost:8080/ingredients
-##content-type: application/json
+###
 
-# [
-#       {
-#         "id": "73fe441a-7598-11ef-8b1c-0242ac120002",
-#         "name": "Sugar"
-#       },
-#       {
-#         "id": "73fe2462-7598-11ef-8b1c-0242ac120002",
-#         "name": "Coffee"
-#       },
-#       {
-#         "id": "73feab12-7598-11ef-8b1c-0242ac120002",
-#         "name": "Cinamon Powder"
-#       },
-#       {
-#         "id": "73fe0cd9-7598-11ef-8b1c-0242ac120002",
-#         "name": "Milk"
-#       }
-# ]
+# Save an ingredient
+POST HTTP://localhost:8080/ingredients/73fe0cd9-7598-11ef-8b1c-0242ac120002 HTTP/1.1
+content-type: application/json
 
-DELETE HTTP://localhost:8080/ingredients/73fe65f9-7598-11ef-8b1c-0242ac120002
+{
+     "id": "73fe0cd9-7598-11ef-8b1c-0242ac120002",
+     "name": "Milk"
+}
+
+###
+
+# Save a list of ingredients
+
+POST  HTTP://localhost:8080/ingredients
+content-type: application/json
+
+[
+      {
+        "id": "73fe441a-7598-11ef-8b1c-0242ac120002",
+        "name": "Sugar"
+      },
+      {
+        "id": "73fe2462-7598-11ef-8b1c-0242ac120002",
+        "name": "Coffee"
+      },
+      {
+        "id": "73feab12-7598-11ef-8b1c-0242ac120002",
+        "name": "Cinamon Powder"
+      },
+      {
+        "id": "73fe0cd9-7598-11ef-8b1c-0242ac120002",
+        "name": "Milk"
+      }
+]
+
+###
+
+# Delete an ingredient (must be orphan!)
+
+DELETE HTTP://localhost:8080/ingredients/73fe331a-7598-11ef-8b1c-0242ac120002
 Content-Type: application/json
 
 {
-    "id": "73fe65f9-7598-11ef-8b1c-0242ac120002",
-    "name": null
-  }
+    "id": "73fe331a-7598-11ef-8b1c-0242ac120002",
+    "name": "Potato"
+}
 
-##GET HTTP://localhost:8080/ingredients
+### ===============================================
 
-##
+# Get all recipes
 
-##POST HTTP://localhost:8080/ingredients/c02b0490-7507-11ef-8fd8-0242ac120002 HTTP/1.1
-# content-type: application/json
+GET HTTP://localhost:8080/recipes
 
-# {
-#      "id": "50cfb46f-7518-11ef-b0ba-0242ac120002",
-#      "name": "Milk"
-# }
+###
+
 
 DELETE HTTP://localhost:8080/recipes/288b6888-7cc5-43f2-b97e-958873ca2bf0
 content-type: application/json

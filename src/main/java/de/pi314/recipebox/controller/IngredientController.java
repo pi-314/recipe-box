@@ -7,7 +7,6 @@ import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,32 +19,61 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @RestController
-@CrossOrigin( origins = "http://localhost:4200")
 public class IngredientController {
 
     @Autowired
     private IngredientRepository ingredientRepository;
 
 
+    /**
+     * Gets all ingredients.
+     * <p>
+     * @return a ResponseEntity containing a list of all ingredients and an HTTP status code.
+     *    <p>- If the retrieval is successful, the status code is 200 (OK).
+     *    <p>- If an error occurs, the status code is 500 (Internal Server Error).
+     */
     @GetMapping("/ingredients")
     public ResponseEntity<List<Ingredient>> getAllIngredients() {
-
         try {
-            return new ResponseEntity<>(StreamSupport.stream(ingredientRepository.findAll().spliterator(), false).toList(), HttpStatus.OK);
+            return new ResponseEntity<>(
+                StreamSupport.stream(ingredientRepository.findAll().spliterator(), false).toList(),
+                HttpStatus.OK
+            );
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    /**
+     * Saves a list of ingredients.
+     * <p>
+     * @param ingredients the list of ingredients to be saved
+     * @return a ResponseEntity containing the list of saved ingredients and an HTTP status code .
+     *    <p>- If saved successfully, the status code is 200 (OK).
+     *    <p>- If an error occurs, the status code is 500 (Internal Server Error).
+     */
     @PostMapping("/ingredients")
     public ResponseEntity<List<Ingredient>> saveAllIngredients(@RequestBody List<Ingredient> ingredients) {
         try {
-            return new ResponseEntity<>(StreamSupport.stream(ingredientRepository.saveAll(ingredients).spliterator(), false).toList(), HttpStatus.OK);
+            return new ResponseEntity<>(
+                StreamSupport.stream(ingredientRepository.saveAll(ingredients).spliterator(), false).toList(),
+                HttpStatus.OK
+            );
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+
+    /**
+     * Saves an existing ingredient.
+     * <p>
+     * @param id The UUID of the ingredient to be updated.
+     * @param ingredient The ingredient object containing updated details.
+     * @return A ResponseEntity containing the updated ingredient and HTTP status code.
+     *    <p>- If saved successfully, the status code is 200 (OK).
+     *    <p>- If an error occurs, the status code is 500 (Internal Server Error).
+     */
     @PostMapping("/ingredients/{id}")
     public ResponseEntity<Ingredient> updateIngredient(@PathVariable UUID id, @RequestBody Ingredient ingredient) {
         try {
@@ -56,6 +84,15 @@ public class IngredientController {
     }
 
     
+    /**
+     * Deletes an ingredient.
+     * <p>
+     * @param id The UUID of the ingredient to be deleted.
+     * @param ingredient The ingredient object to be deleted.
+     * @return A ResponseEntity containing the deleted ingredient and an HTTP status code.
+     *    <p>- If deleted successfully, the status code is 200 (OK).
+     *    <p>- If an error occurs, the status code is 500 (Internal Server Error).
+     */
     @DeleteMapping("/ingredients/{id}")
     public ResponseEntity<Ingredient> removeIngredient(@PathVariable UUID id, @RequestBody Ingredient ingredient) {
         try {
