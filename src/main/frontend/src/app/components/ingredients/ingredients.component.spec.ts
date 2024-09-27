@@ -11,7 +11,6 @@ describe('IngredientsComponentComponent', () => {
     await TestBed.configureTestingModule({
       imports: [IngredientsComponent],
       providers: [
-//        APIService,
         provideHttpClient(),
         provideHttpClientTesting()
     ]

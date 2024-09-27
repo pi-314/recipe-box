@@ -7,6 +7,12 @@
     "inlineSources": true,
     "types": []
   },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictTemplates": true,
+    "disableTypeScriptVersionCheck": true
+  },
   "exclude": [
     "src/**/*.spec.ts",
     "src/test-setup.ts",

@@ -81,7 +81,7 @@ describe('APIService', () => {
     it('should delete an ingredient', () => {
         const mockIngredient: Ingredient = { id: '123e4567-e89b-12d3-a456-426614174000', name: 'Tomato' };
 
-        service.delete(mockIngredient).subscribe(response => {
+        service.deleteIngredient(mockIngredient).subscribe(response => {
             expect(response).toBeUndefined();
         });
 
@@ -185,7 +185,7 @@ describe('APIService', () => {
         const mockIngredient: Ingredient = { id: '123e4567-e89b-12d3-a456-426614174000', name: 'Tomato' };
         const errorMessage = 'Failed to delete ingredient';
 
-        service.delete(mockIngredient).subscribe({
+        service.deleteIngredient(mockIngredient).subscribe({
             next: response => fail('expected an error, not response'),
             error: error => expect(error).toContain(errorMessage)
         });
@@ -227,7 +227,7 @@ describe('APIService', () => {
         const mockIngredient: Ingredient = { id: '123e4567-e89b-12d3-a456-426614174000', name: 'Tomato' };
         const errorMessage = 'Client-side error';
 
-        service.delete(mockIngredient).subscribe({
+        service.deleteIngredient(mockIngredient).subscribe({
             next: response => fail('expected an error, not response'),
             error: error => expect(error).toContain(errorMessage)
         });

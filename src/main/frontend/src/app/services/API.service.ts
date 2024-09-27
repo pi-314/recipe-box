@@ -11,8 +11,11 @@ export class APIService {
     readonly apiBaseUrl = 'http://localhost:8080'; // for now just expose the base URL, usefull for testing!
     private http: HttpClient = inject(HttpClient);
 
+    // ====================================================================================================
+    // Ingredients
+    // =================================================================================================
     getAllIngredients(): Observable<Ingredient[]> {
-        console.log('getAll() called');
+        console.log('getAllIngredients() called');
         return this.http.get<Ingredient[]>(`${this.apiBaseUrl}/ingredients`).pipe(
             catchError(this.handleError<Ingredient[]>('getAll()', []))
         );
@@ -42,7 +45,7 @@ export class APIService {
         );
     }
 
-    delete(ingredient: Ingredient): Observable<void> {
+    deleteIngredient(ingredient: Ingredient): Observable<void> {
         const url = `${this.apiBaseUrl}/ingredients/${ingredient.id}`;
 
         return this.http.delete<void>(url, {
@@ -55,7 +58,9 @@ export class APIService {
         );
     }
 
-// ====================================================================================================
+    // ====================================================================================================
+    // Recipes
+    // ====================================================================================================
     getAllRecipes(): Observable<Recipe[]> {
         console.log('getAllRecipes() called');
         return this.http.get<Recipe[]>(`${this.apiBaseUrl}/recipes`).pipe(

@@ -1,0 +1,113 @@
+<!-- LEFT PANEL -->
+<div class='bg-slate-200 w-1/3 float-left h-dvh'>
+
+    <div class="h-screen">
+
+        <!-- TOOLBAR -->
+        <div class="px-6 py-3 bg-neutral-200 flex-nowrap">
+            <form (submit)="false" >
+                <label hlmLabel for="newCaption" class="text-sm text-slate-500 font-extrabold text-nowrap">Add new recipe:</label>
+                <div class="flex flex-nowrap">
+                    <input hlmInput #newCaption id="newCaption" type="text" size="sm" placeholder="You name it..."
+                        variant="outline" aria-label='Recipe Title' spellcheck="true" autocomplete="off"
+                        class="border rounded-l-xl hover:bg-gray-100 border-r-0 p-2 border-slate-400 bg-slate-100 w-full placeholder:text-blue-300 placeholder:text-xs"
+                        maxlength="255"
+                        required
+                        [formControl]="ctrlNewCaption"
+                    />
+                    <button hlmBtn type="submit" size="sm" 
+                        class="border border-slate-400 rounded-r-xl bg-gray-400 hover:bg-blue-100"
+                        [disabled]="ctrlNewCaption.invalid"
+                        (click)="addNewRecipe()"
+                    >
+                        <hlm-icon name="lucideBookPlus"/>
+                    </button>
+                </div>
+            </form>
+            <label hlmLabel class="text-xs text-slate-500 text-nowrap">Used: {{newCaption.value.length}} / {{newCaption.maxLength}}</label>
+        </div>
+
+        <!-- RECIPES LIST (left) -->
+        <hlm-scroll-area class="h-dvh rounded-md border-collapse">
+        <div class="border-b bg-neutral-500 border-gray-500 h-dvh overflow-auto">
+            <label class="px-6 text-sm text-gray-200 text-nowrap">Recipes in the box ({{ recipes().length }}):</label>
+            @for (item of recipes(); track $index) {
+                <button type="button" 
+                    class="w-full ml-3 mr-0 p-4 border-t border-l rounded-l-3xl text-left  bg-gray-400 border-gray-300 disabled:bg-gray-100 enabled:hover:bg-blue-100 enabled:text-left {{ item.id === selectedRecipe().id ? 'font-bold text-right' : ''}}"
+                    (click)="selectRecipe(item)"
+                    [disabled]="item.id === selectedRecipe().id"
+                >
+                <hlm-icon *ngIf="item.description.length === 0" name="lucideAlertTriangle" size="sm" class="mr-2 text-red-600" />{{ item.caption }}
+                </button>
+            } @empty {
+                <p>Loading...</p>
+            }
+        </div>
+    </hlm-scroll-area>
+    </div>
+</div>
+
+<!-- RIGHT PANEL -->
+<div class='bg-gray-100 p-6 border-collapse border-spacing-0 border-gray-100 w-2/3 float-right h-dvh'>
+    <div class="h-6"></div>
+    <div class="flex items-stretch">
+        <div class="w-6"></div>
+        <div class="w-full h-dvh">
+            @if ( !recipeSelected ) {
+                <!-- placeholder-->
+                <label class="text-center">Select the recipe to start your cooking jorney...</label>
+            } @else {
+                <!-- DETAILS -->
+                <span class="flex flex-col">
+                    <label hlmLabel class="text-xs text-right text-slate-500 text-nowrap">Recipe: {{selectedRecipe().id}}</label>
+                    <label hlmLabel class="text-xs text-right text-slate-500 text-nowrap">{{ recipeForm.status }}</label>
+                </span>
+                <br/>
+                
+                <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+                    <label hlmLabel for="caption" class="text-base text-slate-500 text-nowrap">Recipe name:</label>
+                    <input hlmInput #caption id="caption" type="text" size="sm" placeholder="Give your recipe a name..."
+                        variant="outline" aria-label='Recipe Title' spellcheck="true" autocomplete="off"
+                        class="border hover:bg-gray-100 p-1 border-slate-400 bg-slate-100 w-full placeholder:text-orange-600 placeholder:text-xs"
+                        maxlength="255"
+                        required
+                        formControlName="caption"
+                    />
+                    <label hlmLabel class="text-xs text-slate-500 text-nowrap">Used: {{caption.value.length}} / {{caption.maxLength}}</label>
+                    <br/>
+                    <br/>
+                    <app-ingredients
+                        [ingredients]="selectedRecipe().ingredients"
+                        (onIngredientsChanged)="onIngredientsChanged($event)"
+                    ></app-ingredients>
+                    <br/>
+                    <label hlmLabel for="description" class="text-base text-slate-500 text-nowrap">Description:</label>
+                    <textarea hlmInput #description id="description" spellcheck="true" autocomplete="off"
+                        class="min-h-44 hover:bg-gray-100  border-slate-400 bg-slate-100 w-full placeholder:text-orange-600 placeholder:text-xs" 
+                        placeholder="Describe the recipe..."
+                        required
+                        maxlength="2048"
+                        formControlName="description"
+                    ></textarea>
+                    <label hlmLabel class="text-xs text-slate-500 text-nowrap">Used: {{description.value.length}} / {{description.maxLength}}</label>
+                    <br/>
+                    <br/>
+                    <span class="fflex lex-nowrap">
+                    <button hlmBtn type="submit" variant="outline" size="icon"
+                        class="border border-slate-400 rounded-xl bg-gray-400 hover:bg-blue-100 w-3/4"
+                        [disabled]="!recipeForm.valid"
+                    ><hlm-icon name="lucideSave" />Save</button>
+                    
+                    <button hlmBtn type="button" variant="outline" size="icon"
+                        class="border border-slate-400 rounded-xl bg-rose-600 hover:bg-red-400 w-1/4"
+                        (click)="deleteRecipe(selectedRecipe())"
+                    >
+                        <hlm-icon name="lucideTrash" />Delete
+                    </button>
+                </span>
+                </form>
+            }
+            </div>
+        </div>
+        <div class="w-6">dfgdsfg</div>
+</div>
