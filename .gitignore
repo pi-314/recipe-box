@@ -97,6 +97,9 @@ $RECYCLE.BIN/
 *.iml
 *.ipr
 
+### JetBrains Fleet ###
+.fleet
+
 ### VS Code ###
 .vscode/
 
