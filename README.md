@@ -12,10 +12,10 @@ The things used / tested in this project:
 * MySQL 8.4
 * Angular 18 ( with signals & Co)
 * Jest (for UT)
-* Playright (for e2e)
+* Playwright (for e2e)
 * Spartan NG ( 'SHADCN-like but Angular friendly' UI Component library in early alpha )
 * Tailwind CSS
-* NPX / NX (unfortunatelly, with very little outcome for the project)
+* NPX / NX (unfortunately, with very little outcome for the project)
 
 ## Getting Started
 
@@ -39,7 +39,7 @@ NOTE: for the toolchain setup please consult the official documentation.
 ... to get the thing up and running
 
 
-```
+```bash
 # from project root!
 
 # start MySQL in container, for used credential see .env file
@@ -63,6 +63,12 @@ $  nx serve
 
 ```
 
-After that the application shoud be available on http://localhost:4200 (frontend) and http://localhost:8080 (backend REST endpoints).
+After that the application should be available on http://localhost:4200 (frontend) and http://localhost:8080 (backend REST endpoints).
+
+Your UI should look like this:
+
+![RecipeBox UI](src/doc/resources/ui.png)
+
+
 
 
