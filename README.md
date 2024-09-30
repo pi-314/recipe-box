@@ -67,7 +67,7 @@ After that the application should be available on http://localhost:4200 (fronten
 
 Your UI should look like this:
 
-![RecipeBox UI](src/doc/resources/ui.png)
+![RecipeBox UI](doc/resources/ui.png)
 
 
 
