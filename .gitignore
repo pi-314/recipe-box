@@ -10,9 +10,7 @@
 .springBeans
 .sts4-cache
 
-
 # Created by https://www.gitignore.io/api/git,java,maven,eclipse,windows
-
 
 ### Git ###
 # Created by git for backups. To disable backups in Git:
@@ -101,7 +99,12 @@ $RECYCLE.BIN/
 .fleet
 
 ### VS Code ###
-.vscode/
+.vscode/*
+!*/.vscode/settings.json
+!*/.vscode/tasks.json
+!*/.vscode/launch.json
+!*/.vscode/extensions.json
+.history/*
 
 ### Some additional ignores (sort later)
 *.DS_Store

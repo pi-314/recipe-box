@@ -1,0 +1,21 @@
+{
+  "js/ts.implicitProjectConfig.target": "ES2022",
+  /*
+    * If ESLint-Plugin is installed, let it use correct (flat, eslint.config.js -format) settings for eslint v9.+
+    */
+  "eslint.runtime": "node", //        Let ESLint use the same node version as the project (assumes 'node' is in the PATH)
+  "eslint.useFlatConfig": true, //    Use the flat config format (eslint.config.js) instead of the legacy .eslintrc format
+  "eslint.useESLintClass": true, //   Use the new ESLint class-based configuration
+  "editor.formatOnSave": true, //     Format the code on save
+  "eslint.format.enable": true, //    Use ESLint as the formatter
+  // If multiple formatters are installed, ensure ESLint is the default formatter for JS
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  // Since we're using a monorepo directory layout, we need to tell eslint where to start looking for the config(s):
+  "eslint.workingDirectories": [
+    {
+      "directory": "./frontend",
+    }
+  ],
+}

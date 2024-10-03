@@ -1,0 +1,14 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
+  "recommendations": [
+    "angular.ng-template",
+    "dbaeumer.vscode-eslint",
+    "salbert.comment-ts",
+    "Orta.vscode-jest",
+    "firsttris.vscode-jest-runner",
+    "christian-kohler.npm-intellisense",
+    "bradlc.vscode-tailwindcss",
+    "csstools.postcss",
+    "EditorConfig.EditorConfig",
+  ],
+}

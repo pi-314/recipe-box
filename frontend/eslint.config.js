@@ -4,6 +4,7 @@ const tseslint = require("typescript-eslint");
 const angular = require("angular-eslint");
 
 module.exports = tseslint.config(
+  // lint TS files
   {
     files: ["**/*.ts"],
     extends: [
@@ -30,14 +31,19 @@ module.exports = tseslint.config(
           style: "kebab-case",
         },
       ],
+      /* Adjust rules if required: */
+      "@/semi": "warn",
+      //"@typescript-eslint/no-explicit-any": "warn",
     },
   },
+  // lint HTML files
   {
     files: ["**/*.html"],
     extends: [
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,
+      //...angular.configs.templateAll  // <-- Consider enabling this, if using i18n
     ],
     rules: {},
-  }
+  },
 );

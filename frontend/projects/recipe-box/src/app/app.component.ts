@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { lucideMail } from '@ng-icons/lucide';
-import { provideIcons } from '@ng-icons/core';
-
-import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { APIService } from './services/API.service';
+import { IngredientsService } from './services/ingredients.service';
+import { RecipesComponent } from './components/recipes/recipes.component';
 
 @Component({
-  selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HlmButtonDirective, HlmIconComponent],
-  providers: [provideIcons({ lucideMail })],
+  imports: [CommonModule, RouterModule, RecipesComponent],
+  providers: [RouterModule, RecipesComponent, APIService, IngredientsService],
+  selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'recipe-box';
+  title = 'Recipe Box';
 }
