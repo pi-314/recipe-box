@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
-import { hlmPreset } from "@spartan-ng/ui-core/hlm-tailwind-preset";
 
 export default {
-  presets: [hlmPreset],
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  presets: [require('@spartan-ng/ui-core/hlm-tailwind-preset') as Config],
   content: [
     './projects/**/*.{html,ts}',
     './libs/spartan/**/*.{html,ts}',
