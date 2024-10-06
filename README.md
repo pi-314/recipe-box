@@ -15,7 +15,7 @@ The things used / tested in this project:
 * Playwright (for e2e)
 * Spartan NG ( 'SHADCN-like but Angular friendly' UI Component library in early alpha )
 * Tailwind CSS
-* NPX / NX (unfortunately, with very little outcome for the project)
+* <s>NX.dev</s> (unfortunately, with very little outcome for the project, so I finally removed it completely)
 
 ## Getting Started
 
