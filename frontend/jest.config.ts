@@ -13,6 +13,7 @@ export default {
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
 
   testPathIgnorePatterns: [
+    '<rootDir>/e2e/', /* Ignore e2e tests. */
     // '<rootDir>/libs/spartan/', /* Uncomment to ignore Spartan library tests. */
     // '<rootDir>/projects/recipe-box/src/app/app.component.spec.ts', /* Ignore individual test, i.e. app.component.spec.ts test. */
   ],

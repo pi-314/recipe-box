@@ -10,5 +10,6 @@
     "bradlc.vscode-tailwindcss",
     "csstools.postcss",
     "EditorConfig.EditorConfig",
+    "ms-playwright.playwright",
   ],
 }
