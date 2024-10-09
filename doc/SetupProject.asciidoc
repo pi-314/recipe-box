@@ -1,10 +1,16 @@
+:highlightjsdir: highlight
+:source-highlighter: highlight.js
+:highlightjs-theme: atom-one-light
+
 = Setup Angular18 - Jest - Tailwind - Spartan Project
 
-At the time of writing (Oct. 2024), there are numerous tutorials available for setting up an Angular project with Jest, Tailwind CSS, and Spartan/ui. However, many of these tutorials describe older versions of the frameworks and tools following partially deprecated conventions etc., which may be very confusing for developers who are not familiar with the latest versions of these tools.
+_At the time of writing (Oct. 2024), there are numerous tutorials available for setting up an Angular project with Jest, Tailwind CSS, and Spartan/ui. However, many of these tutorials describe older versions of the frameworks and tools following partially deprecated conventions etc., which may be very confusing for developers who are not familiar with the latest versions of these tools._
 
 The intention of this article is to provide a step-by-step guide on how to set up a project using the latest versions of these frameworks and tools, ensuring that you are following modern best practices and conventions.
 
-Assuming we have already set up a Maven-based Java project, we will now add an Angular frontend to it, following the https://en.wikipedia.org/wiki/Monorepo[monorepo] approach. This means that the Angular project will be placed in a separate folder at the top-level of your repository, while the Java project will remain in its original location, so our top-level directory structure looks like this:
+*What we're going to do*:
+
+Assuming we have already set up a Maven-based Java project, and want now to add an Angular frontend to it, following the https://en.wikipedia.org/wiki/Monorepo[monorepo] approach. This means that the Angular project will be placed in a separate folder at the top-level of your repository, while the Java project will remain in its original location, so our top-level directory structure looks like this:
 
 [source, console]
 ----
@@ -32,8 +38,6 @@ v20.17.0
 == Install Angular CLI
 
 Angular CLI is a command-line interface for Angular applications. It provides a set of commands to create, build, test, and deploy Angular applications.
-
-NOTE: Angular CLI expects, that the directory where you are going to create the Angular project is already under version control (Git). If it is not, you will be prompted to initialize a new Git repository in that directory.
 
 .Install Angular CLI (globally in this case) and check the version:
 [source, shell]
@@ -81,6 +85,8 @@ NOTE: We installed Angular CLI globally in this case. Theoreticaly you can also 
 == Create Angular Workspace
 
 Since we are adding the frontend app on top of our Maven-based Java project, we will first create an empty Angular workspace in a separate top-level folder named `frontend`, which will also be the workspace's name.
+
+IMPORTANT: Angular CLI expects, that the directory where you are going to create the Angular project is already under version control (Git). If it is not, you will be prompted to initialize a new Git repository in that directory, which might be not exactly what you want. Therefore, it is recommended to set up the Angular project in a directory that is already under version control.
 
 .From the Java project root directory, create a new empty Angular workspace `frontend`:
 [source, shell]
