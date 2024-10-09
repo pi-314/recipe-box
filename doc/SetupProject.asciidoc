@@ -2,7 +2,12 @@
 :source-highlighter: highlight.js
 :highlightjs-theme: atom-one-light
 
+:stylesdir: css
+:stylesheet: adoc-golo.css
+
 = Setup Angular18 - Jest - Tailwind - Spartan Project
+
+:toc:
 
 _At the time of writing (Oct. 2024), there are numerous tutorials available for setting up an Angular project with Jest, Tailwind CSS, and Spartan/ui. However, many of these tutorials describe older versions of the frameworks and tools following partially deprecated conventions etc., which may be very confusing for developers who are not familiar with the latest versions of these tools._
 
