@@ -1,6 +1,9 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
 
+# Ignore rendered .html documentation file(s)
+/doc/SetupProject.html
+
 ### STS ###
 .apt_generated
 .classpath
