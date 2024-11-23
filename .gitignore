@@ -1,6 +1,9 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
 
+# Ignore rendered .html documentation file(s)
+/doc/SetupProject.html
+
 ### STS ###
 .apt_generated
 .classpath
@@ -100,6 +103,8 @@ $RECYCLE.BIN/
 
 ### VS Code ###
 .vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 !*/.vscode/settings.json
 !*/.vscode/tasks.json
 !*/.vscode/launch.json
